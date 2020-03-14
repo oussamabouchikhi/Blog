@@ -72,9 +72,29 @@
             </div>
         </nav>
 
-        <main class="py-4">
-            @yield('content')
-        </main>
+        {{-- IF user is authenticated show this sidebar --}}
+        @auth
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 py-4">
+                        <ul class="list-group">
+                            <li class="list-group-item"><a href="/posts">Posts</a></li>
+                            <li class="list-group-item"><a href="/categories">Categories</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-8">
+                        <main class="py-4">
+                            @yield('content')
+                        </main>
+                    </div>
+                </div>
+            </div>
+        @else
+            <main class="py-4">
+                @yield('content')
+            </main>
+        @endauth
+
     </div>
 </body>
 </html>
