@@ -5,16 +5,23 @@
 <div class="card card-default">
     <div class="card-header">Add a new Category</div>
     <div class="card-body">
-        <form action="">
+        <form action="{{ route('categories.store') }}" method="POST">
+            @csrf
             <div class="form-group">
                 <label for="category">Name:</label>
                 <input 
-                    type="text"  class="form-control"
-                    placeholder="Enater a category name"
+                    type="text" name="name"
+                    class="@error('name') is-invalid @enderror form-control"
+                    placeholder="Enter a category name"
                     >
+                    @error('name')
+                        <div class="alert alert-danger">
+                            {{ $message }}
+                        </div>
+                    @enderror
             </div>
             <div class="form-group">
-                <a href="" class="btn btn-primary btn -block">Add</a>
+                <button class="btn btn-primary btn-block">Add</button>
             </div>
         </form>
     </div>

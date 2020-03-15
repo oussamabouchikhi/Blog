@@ -75,6 +75,14 @@
         {{-- IF user is authenticated show this sidebar --}}
         @auth
             <div class="container">
+                {{-- if session has a flash message with 'success' key --}}
+                @if (session()->has('success'))
+                    {{-- get the value of this key --}}
+                    <div class="alert alert-success">
+                        {{ session()->get('success') }}
+                    </div>
+                    
+                @endif
                 <div class="row">
                     <div class="col-md-4 py-4">
                         <ul class="list-group">

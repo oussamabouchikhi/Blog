@@ -10,7 +10,16 @@
 
 <div class="card card-default">
     <div class="card-header">Categories</div>
-    <div class="card-body">There are no categories</div>
+    <div class="card-body">
+        {{-- There are no categories --}}
+        <ul>
+
+            @foreach ($categories as $category)
+              <li> {{ $category->name }}</li>
+            @endforeach
+
+        </ul>
+    </div>
 </div>
     
 @endsection

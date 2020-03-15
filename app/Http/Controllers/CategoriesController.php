@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Category;
+
 class CategoriesController extends Controller
 {
     /**
@@ -13,7 +15,8 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        return view('categories.index');
+        // display index(categories page) with all categories in database
+        return view('categories.index')->with('categories', Category::all());
     }
 
     /**
@@ -34,7 +37,22 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            "name" => "required|unique:categories"
+        ]);
+
+        // valid if we don't have much columns
+        // $categ = new Category();
+        // $categ->name = $request->name;
+
+        // [Mass assignment] IF we have a lot of columns every one will get its equivalant value from request
+        Category::create($request->all());
+
+        // Flash message
+        session()->flash('success', 'Category created successfully');
+
+        return redirect(route('categories.index'));
+
     }
 
     /**
