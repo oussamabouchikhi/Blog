@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\CategoryRequest;
 
 use App\Category;
 
@@ -35,12 +36,9 @@ class CategoriesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
-        $request->validate([
-            "name" => "required|unique:categories"
-        ]);
-
+        
         // valid if we don't have much columns
         // $categ = new Category();
         // $categ->name = $request->name;
