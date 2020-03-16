@@ -18,6 +18,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    @yield('stylesheets')
 </head>
 <body>
     <div id="app">
@@ -107,5 +109,6 @@
         @endauth
 
     </div>
+    @yield('scripts')
 </body>
 </html>

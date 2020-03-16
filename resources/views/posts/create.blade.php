@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('stylesheets')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.1/trix.css" integrity="sha256-yebzx8LjuetQ3l4hhQ5eNaOxVLgqaY1y8JcrXuJrAOg=" crossorigin="anonymous" />
+@endsection
+
 @section('content')
 
 <div class="card card-default">
@@ -26,11 +30,13 @@
             </div>
             <div class="form-group">
                 <label for="post content">Content:</label>
-                <textarea 
+                {{-- <textarea 
                     type="text" name="content"
                     class="form-control"
                     placeholder="Enter post content"
-                    ></textarea>
+                    ></textarea> --}}
+                    <input id="x" type="hidden" name="content">
+                    <trix-editor input="x"></trix-editor>
             </div>
             <div class="form-group">
                 <label for="post image">Image:</label>
@@ -42,5 +48,8 @@
         </form>
     </div>
 </div>
-    
+@endsection
+
+@section('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.1/trix.js" integrity="sha256-2D+ZJyeHHlEMmtuQTVtXt1gl0zRLKr51OCxyFfmFIBM=" crossorigin="anonymous"></script>
 @endsection
