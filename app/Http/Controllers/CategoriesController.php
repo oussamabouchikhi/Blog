@@ -70,9 +70,10 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Category $category)
     {
-        //
+        // we can just use create.blade.php form to edit categories
+        return view('categories.create')->with('category', $category);
     }
 
     /**
@@ -82,9 +83,20 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Category $category)
     {
-        //
+        // method 1
+        // $category->name = $request->name;
+        // $category->save();
+        // method 2
+        $category->update([
+            'name' => $request->name
+        ]);
+
+        // Flash message
+        session()->flash('success', 'Category updated successfully');
+
+        return redirect(route('categories.index'));
     }
 
     /**
