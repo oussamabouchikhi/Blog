@@ -23,3 +23,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // Define all categories routes
 Route::resource('/categories', 'CategoriesController');
+
+// Define all posts routes
+Route::resource('/posts', 'PostsController');
