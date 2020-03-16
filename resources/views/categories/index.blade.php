@@ -38,8 +38,16 @@
     <tbody style="background-color: #fff;">
       @foreach ($categories as $category)
       <tr>
-        <td>{{ $category->name }}
-          <a href="{{ route('categories.edit', $category->id)}}" class="btn btn-primary btn-sm float-right">Edit</a>
+        <td>
+          {{ $category->name }}
+          <form class="float-right ml-2" action="{{ route('categories.destroy', $category->id)}}" method="post">
+            @csrf
+            @method('DELETE')
+            <button class="btn btn-danger btn-sm">
+              Delete
+            </button>
+          </form>
+          <a href="{{ route('categories.edit', $category->id)}}" class="btn btn-success btn-sm float-right">Edit</a>
         </td>
       </tr>
       @endforeach
