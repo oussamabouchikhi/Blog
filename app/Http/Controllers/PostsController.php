@@ -100,6 +100,8 @@ class PostsController extends Controller
 
         if ($post->trashed()) { // if this post was trashed
 
+            // Storage::delete($post->image); // delete post image from storage file
+            Storage::disk('public')->delete($post->image); // delete post image from storage file
             $post->forceDelete(); // delete it permanentely
             session()->flash('success', 'post deleted successfully');
 
