@@ -32,10 +32,13 @@
               @csrf
               @method('DELETE')
               <button class="btn btn-danger btn-sm">
-                Delete
+                {{-- if post got moved to trash --}}
+                {{ $post->trashed() ? 'Delete' : 'Trash'}} 
               </button>
             </form>
-            <a href="{{ route('posts.edit', $post->id)}}" class="btn btn-success btn-sm float-right">Edit</a>
+            @if (!$post->trashed()) 
+              <a href="{{ route('posts.edit', $post->id)}}" class="btn btn-success btn-sm float-right">Edit</a>
+            @endif
           </td>
         </tr>
         @endforeach

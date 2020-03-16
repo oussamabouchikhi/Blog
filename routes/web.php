@@ -26,3 +26,6 @@ Route::resource('/categories', 'CategoriesController');
 
 // Define all posts routes
 Route::resource('/posts', 'PostsController');
+
+// 
+Route::get('/trash', 'PostsController@trash')->name('trash.index');

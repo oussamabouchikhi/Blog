@@ -89,12 +89,41 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy($id)
     {
-        $post->delete();
 
-        session()->flash('success', 'post moved to trash successfully');
+       // Post::all(); get untrashed posts
+       // Post::withTrashed(); get all post even trashed ones
+       // Post::onlyTrashed(); get only trashed posts
+
+        $post = Post::withTrashed()->where('id', $id)->first();
+
+        if ($post->trashed()) { // if this post was trashed
+
+            $post->forceDelete(); // delete it permanentely
+            session()->flash('success', 'post deleted successfully');
+
+        } else {
+
+            $post->delete(); // Move this post to trash
+            session()->flash('success', 'post moved to trash successfully');
+
+        }
 
         return redirect(route('posts.index'));
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     */
+    public function trash()
+    {
+        // get trashed or soft deleted posts
+        $trashed = Post::onlyTrashed()->get();
+
+        // send trashed posts data to posts.index view
+        // to reuse its table to display trashed posts
+        return view('posts.index')->withPosts($trashed);
+    }    
 }
