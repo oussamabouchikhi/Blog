@@ -148,5 +148,20 @@ class PostsController extends Controller
         // send trashed posts data to posts.index view
         // to reuse its table to display trashed posts
         return view('posts.index')->withPosts($trashed);
-    }    
+    }  
+    
+    /**
+     * Restore trashed posts from trash
+     *
+     */
+    public function restore($id)
+    {
+        // get the post by its id then restore it
+        Post::withTrashed()->where('id', $id)->restore();
+
+        session()->flash('success', 'post restored successfully');
+
+        return redirect(route('posts.index'));
+        
+    }  
 }

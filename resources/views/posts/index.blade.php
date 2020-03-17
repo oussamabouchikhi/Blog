@@ -39,6 +39,8 @@
               </form>
               @if (!$post->trashed()) 
                 <a href="{{ route('posts.edit', $post->id)}}" class="btn btn-success btn-sm float-right">Edit</a>
+              @else
+                <a href="{{ route('trash.restore', $post->id)}}" class="btn btn-success btn-sm float-right">Restore</a>
               @endif
             </td>
           </tr>
