@@ -26,7 +26,7 @@ class AddSoftDeleteToPostsTable extends Migration
     public function down()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->dropColumnn('deleted_at');
+            $table->dropColumn('deleted_at');
         });
     }
 }

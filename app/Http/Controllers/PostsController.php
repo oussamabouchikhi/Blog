@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 use App\Post;
+use App\Category;
 use App\Http\Requests\PostRequest;
 use App\Http\Requests\UpdatePostRequest;
 
@@ -30,7 +31,8 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        // return the crate view and pass all categories to it
+        return view('posts.create')->with('categories', Category::all());
     }
 
     /**
@@ -45,6 +47,7 @@ class PostsController extends Controller
             'title' => $request->title ,
             'description' => $request->description ,
             'content' => $request->content ,
+            'category_id' => $request->categoryID ,
             'image' => $request->image->store('images', 'public')
         ]);
 

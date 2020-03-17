@@ -46,6 +46,14 @@
                     <input value="{{ isset($post) ? $post->content : ''}}" id="x" type="hidden" name="content">
                     <trix-editor input="x"></trix-editor>
             </div>
+            <div class="form-group">
+                <label for="categoryID">Select a category</label>
+                <select name="categoryID" id="categoryID" class="form-control">
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                </select> 
+            </div>
             
             @if (isset($post))
             <div class="form-group">

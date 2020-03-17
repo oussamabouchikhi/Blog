@@ -14,10 +14,11 @@ class CreatePostsTable extends Migration
     public function up()
     {
         Schema::create('posts', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('title');
             $table->string('description');
-            $table->string('content');
+            $table->text('content');
+            $table->integer('category_id'); // Foreign key should be in snake_case
             $table->string('image');
             $table->timestamps();
         });
