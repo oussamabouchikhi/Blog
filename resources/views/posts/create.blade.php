@@ -7,17 +7,24 @@
 @section('content')
 
 <div class="card card-default">
-    <div class="card-header">Add a new post</div>
+    <div class="card-header">
+        {{-- if post data were sent so we're updating the post else we're adding a new one --}}
+        {{ isset($post) ? 'Edit this post' : 'Add a new post'}}
+    </div>
     <div class="card-body">
         {{-- we should specify enctype when dealing with files in forms --}}
-        <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ isset($post) ? route('posts.update', $post->id) : route('posts.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
+            @if (isset($post))
+                @method('PUT')
+            @endif
             <div class="form-group">
                 <label for="post title">Title:</label>
                 <input 
                     type="text" name="title"
                     class="form-control"
-                    placeholder="Enter post title"
+                    placeholder="{{ isset($post) ? '' : 'Enter post title'}}"
+                    value="{{ isset($post) ? $post->title : ''}}"
                     >
             </div> 
             <div class="form-group">
@@ -25,7 +32,8 @@
                 <input 
                     type="text" name="description"
                     class="form-control"
-                    placeholder="Enter post description"
+                    placeholder="{{ isset($post) ? '' : 'Enter post description'}}"
+                    value="{{ isset($post) ? $post->description : ''}}"
                     >
             </div>
             <div class="form-group">
@@ -35,15 +43,23 @@
                     class="form-control"
                     placeholder="Enter post content"
                     ></textarea> --}}
-                    <input id="x" type="hidden" name="content">
+                    <input value="{{ isset($post) ? $post->content : ''}}" id="x" type="hidden" name="content">
                     <trix-editor input="x"></trix-editor>
             </div>
+            
+            @if (isset($post))
+            <div class="form-group">
+                <img style="width:100%" src="{{ asset('storage/' . $post->image) }}">
+                </div>
+            @endif
             <div class="form-group">
                 <label for="post image">Image:</label>
                 <input style="display: block;" type="file" name="image" >
             </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-block">Add</button>
+                <button type="submit" class="btn btn-primary btn-block">
+                    {{ isset($post) ? 'Update' : 'Add'}}
+                </button>
             </div>
         </form>
     </div>

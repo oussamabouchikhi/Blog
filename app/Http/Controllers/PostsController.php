@@ -4,8 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+// import the storage facade
+use Illuminate\Support\Facades\Storage;
+
 use App\Post;
 use App\Http\Requests\PostRequest;
+use App\Http\Requests\UpdatePostRequest;
 
 class PostsController extends Controller
 {
@@ -66,9 +70,10 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+        // we'll be using the same create form to edit posts
+        return view('posts.create')->with('post', $post);
     }
 
     /**
@@ -78,9 +83,25 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdatePostRequest $request, Post $post)
     {
-        //
+        // get only this attributtes from request (this method adds some security)
+        $data = $request->only(['title', 'description', 'content']);
+        // if user has updated post image
+        if ($request->hasFile('image')) {
+            // Sqve the new image in images folder
+            $image = $request->image->store('images', 'public');
+            // delete the old image
+            Storage::disk('public')->delete($post->image);
+            // Add the new image to $data
+            $data['image'] = $image;
+        }
+        // update post with this data
+        $post->update($data);
+
+        session()->flash('success', 'post updated successfully');
+
+        return redirect(route('posts.index'));
     }
 
     /**
@@ -111,7 +132,7 @@ class PostsController extends Controller
             session()->flash('success', 'post moved to trash successfully');
 
         }
-
+       
         return redirect(route('posts.index'));
     }
 

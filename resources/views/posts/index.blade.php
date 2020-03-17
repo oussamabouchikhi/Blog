@@ -12,7 +12,7 @@
     Posts
   </div>
   <div class="card-body">
-    @if ( $post->count() > 0)
+    @if ( $posts->count() > 0)
       <table class="table table-bordered">
         <thead class="thead-default">
           <tr>
