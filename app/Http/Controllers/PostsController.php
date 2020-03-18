@@ -14,6 +14,14 @@ use App\Http\Requests\UpdatePostRequest;
 
 class PostsController extends Controller
 {
+
+    public function __contruct(){
+
+        // This middleware runs only for create method
+        $this->middleware('checkCategory')->only('create');
+    }
+
+
     /**
      * Display a listing of the resource.
      *

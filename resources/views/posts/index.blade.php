@@ -2,6 +2,13 @@
 
 @section('content')
 
+{{-- display error message if found --}}
+@if (session()->has('error'))
+    <div class="alert alert-danger">
+      {{ session()->get('error') }}
+    </div>
+@endif
+
 <div class="clearfix">
 <a href="{{ route('posts.create') }}" class="btn btn-primary float-right mb-3">
         Add a post
