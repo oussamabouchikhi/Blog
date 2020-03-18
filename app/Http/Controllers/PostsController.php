@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 
 use App\Post;
 use App\Category;
+use App\Tag;
 use App\Http\Requests\PostRequest;
 use App\Http\Requests\UpdatePostRequest;
 
@@ -39,8 +40,8 @@ class PostsController extends Controller
      */
     public function create()
     {
-        // return the crate view and pass all categories to it
-        return view('posts.create')->with('categories', Category::all());
+        // return the crate view and pass all categories & tags to it
+        return view('posts.create')->with('categories', Category::all())->with('tags', Tag::all());
     }
 
     /**
@@ -51,13 +52,18 @@ class PostsController extends Controller
      */
     public function store(PostRequest $request)
     {
-        Post::create([
+        $post = Post::create([
             'title' => $request->title ,
             'description' => $request->description ,
             'content' => $request->content ,
             'category_id' => $request->categoryID ,
             'image' => $request->image->store('images', 'public')
         ]);
+
+        if ($request->tags) { // if user choosed tags
+            // attach post with its tags(array)
+            $post->tags()->attach($request->tags);
+        }
 
         session()->flash('success', 'post created successfully');
 
@@ -84,7 +90,7 @@ class PostsController extends Controller
     public function edit(Post $post)
     {
         // we'll be using the same create form to edit posts
-        return view('posts.create')->with('post', $post);
+        return view('posts.create', ['post' => $post, 'categories' => Category::all(), 'tags' => Tag::all()]);
     }
 
     /**
@@ -107,6 +113,12 @@ class PostsController extends Controller
             // Add the new image to $data
             $data['image'] = $image;
         }
+
+        if ($request->tags) {
+            // sync (attach + detach) add a tag if selected or remove it if not
+            $post->tags()->sync($request->tags);
+        }
+
         // update post with this data
         $post->update($data);
 

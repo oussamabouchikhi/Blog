@@ -27,6 +27,9 @@ Route::group(['middleware' => 'auth'], function() {
     // Define all categories routes
     Route::resource('/categories', 'CategoriesController');
 
+    // Define all tags routes
+    Route::resource('/tags', 'TagsController');
+
     // Define all posts routes
     Route::resource('/posts', 'PostsController');
 

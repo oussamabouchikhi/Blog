@@ -54,6 +54,22 @@
                     @endforeach
                 </select> 
             </div>
+            @if ($tags->count > 0)
+                <div class="form-group">
+                    <label for="selectTag">Select a tag</label>
+                    <select name="tags[]" id="selectTag" class="form-control" multiple>
+                        @foreach ($tags as $tag)
+                            <option 
+                                value="{{ $tag->id }}"
+                                @if ($post->hasTag($tag->id ))
+                                    selected
+                                @endif
+                                >{{ $tag->name }}</option>
+                        @endforeach
+                    </select> 
+                </div>
+            @endif
+            
             
             @if (isset($post))
             <div class="form-group">
