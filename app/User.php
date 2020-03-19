@@ -6,6 +6,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+use App\Profile;
+
 class User extends Authenticatable
 {
     use Notifiable;
@@ -41,5 +43,21 @@ class User extends Authenticatable
     public function isAdmin() {
         
         return $this->role == 'admin';
+    }
+
+    /** get user Gravatar (Globally Recognized Avatar) */
+    public function getGravatar()
+    {
+        # code...
+        $hash = md5(strtolower(trim($this->attributes['email'])));
+        return 'http://gravatar.com/avatar/$hash';
+    }
+
+
+    public function profile()
+    {
+        // use App\Profile;  dont forget to use the Profile Model up
+        // This User has one profile
+        return $this->hasOne(Profile::class);
     }
 }

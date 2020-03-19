@@ -13,8 +13,19 @@ class UsersController extends Controller
         return view('users.index')->with('users', User::all());
     }
 
-    public function create()
+
+    /** Make a normal user(writer) as an Admin */
+    public function makeAdmin(User $user)
     {
-        return view('users.create');
+        $user->role = 'admin';
+        $user->save();
+        return redirect(route('users.index'));
+    }
+
+    /** Get User Profile */
+    public function prof(User $user)
+    {
+        $profile = $user->profile;
+        return view('users.profile', ['user' => $user, 'profile' => $profile]);
     }
 }

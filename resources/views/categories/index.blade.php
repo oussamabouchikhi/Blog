@@ -28,30 +28,42 @@
         </table>
     </table>
 </div> --}}
-
-<table class="table table-bordered">
-    <thead class="thead-default">
-      <tr>
-        <th>Categories</th>
-      </tr>
-    </thead>
-    <tbody style="background-color: #fff;">
-      @foreach ($categories as $category)
-      <tr>
-        <td>
-          {{ $category->name }}
-          <form class="float-right ml-2" action="{{ route('categories.destroy', $category->id)}}" method="post">
-            @csrf
-            @method('DELETE')
-            <button class="btn btn-danger btn-sm">
-              Delete
-            </button>
-          </form>
-          <a href="{{ route('categories.edit', $category->id)}}" class="btn btn-success btn-sm float-right">Edit</a>
-        </td>
-      </tr>
-      @endforeach
-    </tbody>
-  </table>
+@if ( $categories->count() > 0)
+    <table class="table table-bordered">
+      <thead class="thead-default">
+        <tr>
+          <th>Categories</th>
+        </tr>
+      </thead>
+      <tbody style="background-color: #fff;">
+        
+            @foreach ($categories as $category)
+            <tr>
+              <td>
+                {{ $category->name }}
+                <form class="float-right ml-2" action="{{ route('categories.destroy', $category->id)}}" method="post">
+                  @csrf
+                  @method('DELETE')
+                  <button class="btn btn-danger btn-sm">
+                    Delete
+                  </button>
+                </form>
+                <a href="{{ route('categories.edit', $category->id)}}" class="btn btn-success btn-sm float-right">Edit</a>
+              </td>
+            </tr>
+            @endforeach
+      </tbody>
+    </table>
+@else
+    <div class="card card-default">
+        <div class="card-header">
+          Categories
+        </div>
+        <div class="card-body">
+          <h3 class="text-center text-muted">There is no categories to show.</h3>
+        </div>
+    
+    </diV>
+@endif
     
 @endsection

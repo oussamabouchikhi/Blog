@@ -9,11 +9,6 @@
     </div>
 @endif
 
-<div class="clearfix">
-<a href="{{ route('users.create') }}" class="btn btn-primary float-right mb-3">
-        Add a user
-    </a>
-</div>
 <div class="card">
   <div class="card-header">
     users
@@ -33,23 +28,19 @@
           <tr>
             <td>
               {{-- <img src="{{ asset('storage/' . $user->image) }}" width="100px" alt="{{ $user->title }}"> --}}
-              <span>Avatar</span>
+              <span>
+                  <img src="{{$user->getGravatar()}}" style="border-radius: 50%; width: 50px;" alt="user avatar">
+              </span>
             </td>
             <td>{{ $user->name }}</td>
-            <td>{{ $user->role }}</td>
             <td>
-              <form class="float-right ml-2" action="{{ route('users.destroy', $user->id)}}" method="user">
-                @csrf
-                @method('DELETE')
-                <button class="btn btn-danger btn-sm">
-                  {{-- if user got moved to trash --}}
-                  {{ $user->trashed() ? 'Delete' : 'Trash'}} 
-                </button>
-              </form>
-              @if (!$user->trashed()) 
-                <a href="{{ route('users.edit', $user->id)}}" class="btn btn-success btn-sm float-right">Edit</a>
+              @if (!$user->isAdmin())
+                  <form action="{{ route('users.make-admin', $user->id)}}" method="post">
+                      @csrf
+                      <button class="btn btn-success" type="submit">Make Admin</button>
+                  </form>
               @else
-                <a href="{{ route('trash.restore', $user->id)}}" class="btn btn-success btn-sm float-right">Restore</a>
+                  {{ $user->role }}
               @endif
             </td>
           </tr>

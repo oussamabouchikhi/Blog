@@ -40,8 +40,14 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/trash/{id}', 'PostsController@restore')->name('trash.restore');
 });
 
-
+// Admin
 Route::middleware(['auth' => 'admin'])->group(function () {
     Route::get('/users', 'UsersController@index')->name('users.index');
-    Route::get('/users/create', 'UsersController@create')->name('users.create');
+    Route::get('/users/{user}/make-admin', 'UsersController@makeAdmin')->name('users.make-admin');
+});
+
+// User profile
+Route::middleware(['auth'])->group(function () {
+    Route::get('/users/{user}/profile', 'UsersController@prof')->name('users.prof');
+    Route::post('/users/{user}/profile', 'UsersController@update')->name('users.update');
 });
