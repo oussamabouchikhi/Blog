@@ -15,7 +15,7 @@ class Profile extends Model
     public function user()
     {
         # This profile belongs to one user
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'users_id');
         // return $this->belongsTo('App\User','user_id'); from stack overflow
     }
 }

@@ -29,7 +29,7 @@
                 <label for="about">About:</label>
                 <textarea type="text" name="about" class="form-control" 
                           placeholder="Tell the world about you" >
-                          {{ $user->about }}
+                          {{ $profile->about }}
                 </textarea>
             </div>
             <div class="form-group">
@@ -37,7 +37,7 @@
                 <input 
                     type="text" name="facebook"
                     class="form-control"
-                    {{-- value="{{ $profile->facebook }}" --}}
+                    value="{{ $profile->facebook }}"
                     >
             </div>
             <div class="form-group">
@@ -45,7 +45,7 @@
                 <input 
                     type="text" name="instagram"
                     class="form-control"
-                    {{-- value="{{ $profile->instagram }}" --}}
+                    value="{{ $profile->instagram }}"
                     >
             </div>
             <div class="form-group">
