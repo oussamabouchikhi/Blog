@@ -40,8 +40,9 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/trash/{id}', 'PostsController@restore')->name('trash.restore');
 });
 
-// Admin
+// Admin routes (only admins can access these routes)
 Route::middleware(['auth' => 'admin'])->group(function () {
+    Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
     Route::get('/users', 'UsersController@index')->name('users.index');
     Route::post('/users/{user}/make-admin', 'UsersController@makeAdmin')->name('users.make-admin');
 });
