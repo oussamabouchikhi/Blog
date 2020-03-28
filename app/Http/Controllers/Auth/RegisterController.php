@@ -73,7 +73,10 @@ class RegisterController extends Controller
         ]);
 
         // bind this user with a profile
-        $profile = Profile::create(['user_id' => $user->id]);
+        $profile = Profile::create([
+            'user_id' => $user->id,
+            'image' => $user->getGravatar()
+        ]);
 
         return $user;
     }

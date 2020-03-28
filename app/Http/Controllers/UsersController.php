@@ -28,4 +28,21 @@ class UsersController extends Controller
         $profile = $user->profile;
         return view('users.profile', ['user' => $user, 'profile' => $profile]);
     }
+
+    public function update(User $user, Request $request)
+    {
+        // get user profile(our defined method)
+        $profile = $user->profile;
+        // get all data coming from request [dd($request->all());]
+        $data = $request->all();
+        // if user updated his image
+        if ($request->hasFile('image')) {
+            # save image in a folder called profile-pictures
+            $image = $request->image->store('profile-pictures', 'public');
+            $data['image'] = $request->image;
+        }
+        // update profile with this image
+        $profile->update($data);
+        return redirect(route('home'));
+    }
 }

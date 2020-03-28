@@ -7,7 +7,7 @@
         Profile
     </div>
     <div class="card-body">
-        <form action="{{  route('users.update', $user->id) }}" method="POST">
+        <form action="{{  route('users.update', $user->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="name">Name:</label>
@@ -29,7 +29,7 @@
                 <label for="about">About:</label>
                 <textarea type="text" name="about" class="form-control" 
                           placeholder="Tell the world about you" >
-                          {{ $profile->about }}
+                          {{ $user->profile->about }}
                 </textarea>
             </div>
             <div class="form-group">
@@ -50,7 +50,8 @@
             </div>
             <div class="form-group">
                 <label for="image">Profile Image:</label><br>
-                <img src="{{ $user->getGravatar()}}" alt="{{$user->name}} profile-image">
+                <img src="{{ $user->hasImage() ? asset('storage/' . $user->getImage()) : $user->getGravatar()}}" style='border-radius: 50%; width: 50px;'>
+                    {{-- <img src="https://www.google.com/search?q=user+profile+placeholder&rlz=1C1CHBD_frDZ891DZ891&sxsrf=ALeKk02ow2SBUt4moGoe9scBHNdWzEm4Sw:1584810466416&tbm=isch&source=iu&ictx=1&fir=AJVAPsXUg8UHuM%253A%252CwxW9NZXE4dgLPM%252C_&vet=1&usg=AI4_-kSLMqb9ktezeLNpoVpgo5NFS_C0zg&sa=X&ved=2ahUKEwiJ9ouHh6zoAhVnAmMBHX6nBtQQ9QEwDHoECAoQOg#imgrc=AJVAPsXUg8UHuM:"> --}}
                 <input 
                     type="file" name="image"
                     class="form-control mt-2"

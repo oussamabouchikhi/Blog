@@ -48,9 +48,26 @@ class User extends Authenticatable
     /** get user Gravatar (Globally Recognized Avatar) */
     public function getGravatar()
     {
-        # code...
+       
         $hash = md5(strtolower(trim($this->attributes['email'])));
         return 'http://gravatar.com/avatar/$hash';
+    }
+
+    /** Determine if the user has a profile picture or not using Regular Expression */
+    public function hasImage()
+    {
+        if (preg_match('/profile-pictures/', $this->profile->image, $match)) {
+            # contains /profile-pictures/ means image is stored in this folder
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /** Get user profile picture */
+    public function getImage()
+    {
+        return $this->profile->image;
     }
 
 

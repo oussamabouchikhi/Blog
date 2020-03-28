@@ -27,9 +27,8 @@
           @foreach ($users as $user)
           <tr>
             <td>
-              {{-- <img src="{{ asset('storage/' . $user->image) }}" width="100px" alt="{{ $user->title }}"> --}}
               <span>
-                  <img src="{{$user->getGravatar()}}" style="border-radius: 50%; width: 50px;" alt="user avatar">
+                  <img src="{{ $user->hasImage() ? asset('storage/' . $user->getImage()) : $user->getGravatar()}}" style='border-radius: 50%; width: 50px;'>
               </span>
             </td>
             <td>{{ $user->name }}</td>
