@@ -29,21 +29,19 @@
   
         <nav class="navbar px-md-0 navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
           <div class="container">
-            <a class="navbar-brand" href="index.html">Blog<i>gy</i>.</a>
+            <a class="navbar-brand" href="{{ route('welcome') }}">Blog<i>gy</i>.</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
               <span class="oi oi-menu"></span> Menu
             </button>
   
             <div class="collapse navbar-collapse" id="ftco-nav">
               <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-                <li class="nav-item active"><a href="blog.html" class="nav-link">Posts</a></li>
-                <li class="nav-item"><a href="about.html" class="nav-link">Categories</a></li>
-                <li class="nav-item"><a href="about.html" class="nav-link">Tags</a></li>
-                <li class="nav-item"><a href="about.html" class="nav-link">Trash</a></li>
-                <li class="nav-item"><a href="about.html" class="nav-link">Profile</a></li>
-                <li class="nav-item"><a href="contact.html" class="nav-link">Users</a></li>
-                <li class="nav-item"><a href="contact.html" class="nav-link">Dashboard</a></li>
+                <li class="nav-item"><a href="{{ route('welcome') }}" class="nav-link">Home</a></li>
+              <li class="nav-item active"><a href="{{ route('posts.index') }}" class="nav-link">Posts</a></li>
+                <li class="nav-item"><a href="{{ route('categories.index') }}" class="nav-link">Categories</a></li>
+                <li class="nav-item"><a href="{{ route('tags.index') }}" class="nav-link">Tags</a></li>
+                <li class="nav-item"><a href="{{ route('trash.index') }}" class="nav-link">Trash</a></li>
+                <li class="nav-item"><a href="{{ route('home') }}" class="nav-link">setting</a></li>
               </ul>
             </div>
           </div>
