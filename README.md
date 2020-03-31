@@ -10,6 +10,7 @@ A blog made with laravel where users can create, edit & share their posts.
 ## Screenshot
 <p align="center">
     <img src="screenshots/landing.png" width="800">
+    <img src="screenshots/settings.png" width="800">
 </p>
 
 ## Tools & Languages
