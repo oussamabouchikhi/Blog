@@ -17,6 +17,10 @@ A blog made with laravel where users can create, edit & share their posts.
 - **[Laravel](https://laravel.com/)**
 - [VSCode](https://code.visualstudio.com/).
 
+## Todo
+    - Improve "/home" page design
+    - Fix editor issue (Html tags are rendered instead of text)
+    - Fix Image issue
 
 ## Contributing
 
