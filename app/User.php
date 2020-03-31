@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 use App\Profile;
+use App\Post;
 
 class User extends Authenticatable
 {
@@ -76,5 +77,12 @@ class User extends Authenticatable
         // use App\Profile;  dont forget to use the Profile Model up
         // This User has one profile
         return $this->hasOne(Profile::class);
+    }
+
+    public function posts()
+    {
+        // use App\Post;  dont forget to use the Post Model up
+        // This User has many posts
+        return $this->hasMany(Post::class);
     }
 }

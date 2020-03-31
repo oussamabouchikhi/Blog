@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="clearfix">
-<a href="{{ route('categories.create') }}" class="btn btn-primary float-right mb-3">
+<a href="{{ route('tags.create') }}" class="btn btn-primary float-right mb-3">
         Add a tag
     </a>
 </div>

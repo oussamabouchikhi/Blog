@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Welcome page route
-Route::get('/', 'WelcomeController@index');
+Route::get('/', 'WelcomeController@index')->name('welcome');
 
 // Authentication routes (login, register ...)
 Auth::routes();

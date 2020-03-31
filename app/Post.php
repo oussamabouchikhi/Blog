@@ -7,11 +7,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 use App\Category;
 use App\Tag;
+use App\User;
 
 class Post extends Model
 {
     use SoftDeletes;
-    protected $fillable = ['title', 'description', 'content', 'image', 'category_id'];
+    protected $fillable = ['title', 'description', 'content', 'image', 'category_id', 'user_id'];
 
     /**
      * Get the category of this post.
@@ -50,4 +51,17 @@ class Post extends Model
         return in_array($this->tags->pluck('id')->toArray());
 
     }
+
+    /**
+     * Get the user of this post.
+     * ! Note that user is an attribute not a function on call we'll do ->user without ()
+     */
+    public function user() {
+
+        // This Post belongs to one user
+        return $this->belongsTo(User::class);
+
+    }
+
+
 }

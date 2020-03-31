@@ -19,6 +19,7 @@ class CreatePostsTable extends Migration
             $table->string('description');
             $table->text('content');
             $table->integer('category_id'); // Foreign key should be in snake_case
+            $table->integer('user_id'); // Foreign key should be in snake_case
             $table->string('image');
             $table->timestamps();
         });

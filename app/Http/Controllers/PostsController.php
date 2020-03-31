@@ -57,7 +57,8 @@ class PostsController extends Controller
             'description' => $request->description ,
             'content' => $request->content ,
             'category_id' => $request->categoryID ,
-            'image' => $request->image->store('images', 'public')
+            'image' => $request->image->store('images', 'public'),
+            'user_id' => $request->user_id
         ]);
 
         if ($request->tags) { // if user choosed tags
@@ -78,8 +79,10 @@ class PostsController extends Controller
      */
     public function show(Post $post)
     {
-        // return single post page with the post info and all categories
-        return view('posts.show')->with('post', $post)->with('categories', Category::all());
+        $user = $post->user; // get post user
+        $profile = $user->profile; // get post user_profile
+        // return single post page with the post info, user and all categories
+        return view('posts.show')->with('post', $post)->with('categories', Category::all())->with('profile', $profile)->with('user', $user);
     }
   
     /**

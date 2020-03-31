@@ -55,16 +55,16 @@
                     @endforeach
                 </select> 
             </div>
-            @if ($tags->count > 0)
+            @if ($tags->count() > 0)
                 <div class="form-group">
                     <label for="selectTag">Select a tag</label>
                     <select name="tags[]" id="selectTag" class="tagsSelect form-control" multiple>
                         @foreach ($tags as $tag)
                             <option 
                                 value="{{ $tag->id }}"
-                                @if ($post->hasTag($tag->id ))
+                                {{-- @if ( $post->hasTag($tag->id) )
                                     selected
-                                @endif
+                                @endif --}}
                                 >{{ $tag->name }}</option>
                         @endforeach
                     </select> 
@@ -73,10 +73,14 @@
             
             
             @if (isset($post))
-            <div class="form-group">
-                <img style="width:100%" src="{{ asset('storage/' . $post->image) }}">
+                <div class="form-group">
+                    <img style="width:100%" src="{{ asset('storage/' . $post->image) }}">
                 </div>
             @endif
+            {{-- for sending the current user id --}}
+            <input value="{{ Auth::user()->id }}"  type="hidden" name="user_id">
+
+
             <div class="form-group">
                 <label for="post image">Image:</label>
                 <input style="display: block;" type="file" name="image" >

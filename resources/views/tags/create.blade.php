@@ -9,7 +9,7 @@
         {{ isset($tag) ? "Edit tag" : "Add a new tag" }}
         </div>
     <div class="card-body">
-        <form action="{{ isset($tag) ? route('categories.update', $tag->id) : route('categories.store') }}" method="POST">
+        <form action="{{ isset($tag) ? route('tags.update', $tag->id) : route('tags.store') }}" method="POST">
             @csrf
             {{-- if we updating tag method will be set to PUT --}}
             @if (isset($tag))
