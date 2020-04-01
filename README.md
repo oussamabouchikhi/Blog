@@ -19,7 +19,7 @@ A blog made with laravel where users can create, edit & share their posts.
 
 ## Todo
 - [ ] Improve "/home" page design
-- [ ] Fix editor issue (Html tags are rendered instead of text)
+- [x] Fix editor issue (Html tags are rendered instead of text) [fixed by [@simphiwehlabisa](https://github.com/simphiwehlabisa)]
 - [ ] Fix Image issue
 
 ## Contributing
