@@ -71,12 +71,12 @@
    			<div class="row">
    				<div class="col-md-12">
 
-                 @foreach ($posts as $post) 
+                 @foreach ($posts as $post)
    					    <div class="case">
        						<div class="row">
        							<div class="col-md-6 col-lg-6 col-xl-8 d-flex">
        								<a
-                            href="blog-single.html" class="img w-100 mb-3 mb-md-0"
+                            href="{{ route('posts.show', $post->id) }}" class="img w-100 mb-3 mb-md-0"
                             {{-- style="background-image: url(images/image_1.jpg);" --}}
                             style="background-image: url( {{ asset('storage/' . $post->image) }} );"
                          >
@@ -86,7 +86,7 @@
        								<div class="text w-100 pl-md-3">
        									<span class="subheading">{{ $post->category->name }} </span>
        									<h2>
-                          
+
                           <a href=" {{ route('posts.show', $post->id) }} ">
                             {{ $post->title }}
                           </a>
