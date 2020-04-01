@@ -4,7 +4,7 @@
       <title>Bloggy</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  
+
       <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
 
       <link rel="stylesheet" href=" {{ asset('css/open-iconic-bootstrap.min.css') }} ">
@@ -21,19 +21,19 @@
       <link rel="stylesheet" href=" {{ asset('css/flaticon.css') }} ">
       <link rel="stylesheet" href=" {{ asset('css/icomoon.css') }} ">
       <link rel="stylesheet" href=" {{ asset('css/style.css') }} "> -->
-  
-    
-  
+
+
+
     </head>
     <body>
-  
+
         <nav class="navbar px-md-0 navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
           <div class="container">
             <a class="navbar-brand" href="{{ route('welcome') }}">Blog<i>gy</i>.</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
               <span class="oi oi-menu"></span> Menu
             </button>
-  
+
             <div class="collapse navbar-collapse" id="ftco-nav">
               <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><a href="{{ route('welcome') }}" class="nav-link">Home</a></li>
@@ -47,7 +47,7 @@
           </div>
         </nav>
       <!-- END nav -->
-  
+
       <section class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url( {{ asset('storage/' . $post->image) }} );" data-stellar-background-ratio="0.5">
         <div class="overlay"></div>
         <div class="container">
@@ -59,13 +59,13 @@
           </div>
         </div>
       </section>
-  
+
      <section class="ftco-section ftco-degree-bg">
         <div class="container">
           <div class="row">
             <div class="col-lg-8 ftco-animate">
                 <p class="mb-5">
-                    {{!! $post->content !!}} 
+                    {{strip_tags($post->content)}}
                 </p>
               <div class="tag-widget post-tag-container mb-5 mt-5">
                 <div class="tagcloud">
@@ -74,7 +74,7 @@
                   @endforeach
                 </div>
               </div>
-  
+
               <div class="about-author d-flex p-4 bg-light">
                 <div class="bio mr-5">
                   {{-- <img src="images/person_1.jpg" alt="Image placeholder" class="img-fluid mb-4"> --}}
@@ -85,9 +85,9 @@
                   <p>{{ $user->profile->about }}</p>
                 </div>
               </div>
-  
-  
-        
+
+
+
             </div> <!-- .col-md-8 -->
             <div class="col-lg-4 sidebar pl-lg-5 ftco-animate">
               <div class="sidebar-box">
@@ -102,23 +102,23 @@
                 <div class="categories">
                   <h3>Categories</h3>
                   @foreach ($categories as $category)
-                    <li><a href="#"> {{ $category->name }} <span class="ion-ios-arrow-forward"></span></a></li>  
+                    <li><a href="#"> {{ $category->name }} <span class="ion-ios-arrow-forward"></span></a></li>
                   @endforeach
                 </div>
               </div>
-  
-         
-  
+
+
+
               <div class="sidebar-box ftco-animate">
                 <h3>Paragraph</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
               </div>
             </div>
-  
+
           </div>
         </div>
       </section> <!-- .section -->
-  
+
       <footer class="ftco-footer ftco-bg-dark ftco-section">
         <div class="container">
           <div class="row">
@@ -128,13 +128,13 @@
           </div>
         </div>
       </footer>
-  
-  
-  
+
+
+
     <!-- loader -->
     <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
-  
-  
+
+
     <script src=" {{ asset('js/jquery.min.js') }} "></script>
     <script src=" {{ asset('js/jquery-migrate-3.0.1.min.js') }} "></script>
     <script src=" {{ asset('jquery-migrate-3.0.1.min.js') }} "></script>
